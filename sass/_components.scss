@@ -1,0 +1,93 @@
+.nav{
+    display: flex;
+    list-style: none;
+    align-items: flex-end;
+
+    @media only screen and (max-width: $bp-smallest){
+        position: fixed;
+        background-color: var(--color-white);
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 86%;
+        padding: 2rem;
+        justify-content: flex-end;
+        align-items: center;
+        z-index: 100;
+        transform: translateY(-100%);
+        transition: all .2s ease;
+    }
+
+    &[data-visible="true"] {
+        transform: translateY(0);
+    }
+
+    &__item{
+        &:not(:last-child){
+            margin-right: 3rem;
+        }
+    }
+
+
+    &__link:link,
+    &__link:visited{
+        display: block;
+        position: relative;
+        font-size: 1.9rem;
+        text-decoration: none;
+        text-transform: lowercase;
+        color: var(--color-white);
+
+        @media only screen and (max-width: $bp-smallest){
+            color: var(--color-black);
+        }
+    }
+
+    &__link::after{
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background-color: transparent;
+        height: 4px;
+        width: 50%;
+        transform: translate(50%, 1rem);
+        opacity: 0;
+        transition: all .2s ease;
+    }
+
+    &__link:hover::after{
+        opacity: 1;
+        background-color: var(--color-white);
+
+        @media only screen and (max-width: $bp-smallest){
+            background-color: var(--color-black);
+        }
+    }
+}
+
+.hamburger{
+    display: none;
+
+    @media only screen and (max-width: $bp-smallest){
+        display: block;
+        position: absolute;
+        top: 5.3rem;
+        left: 2rem;
+        height: 2rem;
+        width: 2.5rem;
+        z-index: 150;
+        background: transparent;
+        background-image: url("../images/icon-hamburger.svg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border: 0;
+    }
+
+    &[data-expanded="true"] {
+        background-image: url("../images/icon-close.svg");
+        position: fixed;
+    }
+}

@@ -1,0 +1,61 @@
+$bp-largest: 81.25em; //1300px
+$bp-large: 75em; //1200px
+$bp-medium: 62.5em; //1000px
+$bp-small: 50em; //800px
+$bp-smallest: 25em; //400px
+
+:root{
+    --color-dark-grey-1: hsl(0, 0%, 63%);
+    --color-black: hsl(0, 0%, 0%);
+    --color-white: hsl(0, 0%, 100%);
+    --color-dark-grey-2: hsl(0, 0%, 27%);
+}
+
+*,
+*::before,
+*::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html{
+    box-sizing: border-box;
+    font-size: 62.5%; 
+
+    @media only screen and (max-width: $bp-largest){
+        font-size: 60%;
+    }
+
+    @media only screen and (max-width: $bp-large){
+        font-size: 50%;
+    }
+}
+
+body{
+    position: relative;
+    font-family: 'League Spartan', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--color-dark-grey-1);
+    overflow-x: hidden;
+
+    &[data-expanded="true"]{
+        &::after{
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,.5);
+        }
+    }
+}
+
+.grid-container{
+    display: grid;
+    grid-template-columns: [full-start] 6rem 
+                           [center-start] repeat(8, minmax(calc((100vw - 12rem)/8), min-content)) [center-end] 
+                           6rem [full-end];
+}
